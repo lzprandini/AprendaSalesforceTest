@@ -1,7 +1,21 @@
-<apex:page>
+<apex:page controller="EstudoController">
 
-    ESCOLHA DA PROVA
+    <apex:slds />
+    <apex:variable value="{!0}" var="num"/>
 
-    INICIAR
-
+    <apex:sectionHeader title="Aprenda Salesforce" /> 
+    <apex:form>
+      <apex:pageBlock title="Provas Disponíveis">
+        <apex:pageBlockButtons> 
+          <apex:commandButton action="{!step2}" value="Next"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection title="Selecione a Prova"> 
+            <apex:repeat var="prova" value="{!lstProva}">
+                <div class="slds-col"> 
+                    <!-- <span> {!lstProva[num]} </span> -->
+                </div>
+            </apex:repeat>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
 </apex:page>

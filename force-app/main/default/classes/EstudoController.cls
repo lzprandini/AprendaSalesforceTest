@@ -8,9 +8,13 @@ public with sharing class EstudoController {
     public EstudoController() {
         lstOpc          = new List<Opcoes__c>();
         lstPergunta     = new List<Pergunta__c>();
-        lstProva        = new List<Prova__c>();
+        lstProva        = new List<Prova__c>(); 
         lstProva = ProvaDAO.getProvas();
         
+    }
+
+    public void step2(){
+
     }
 
     // Pegar as Perguntas
@@ -33,6 +37,11 @@ public with sharing class EstudoController {
         // retorna
     }
 
+    public class pergunta { 
+        public Pergunta__c perguntaS  {get; set;}
+        public List<Opcoes__c> opcoes {get; set;};
+    }
+ 
     // public class pergunta{
 
     //     public Pergunta__c perguntaS {get; set;}
