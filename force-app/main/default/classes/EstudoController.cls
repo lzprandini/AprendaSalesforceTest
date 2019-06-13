@@ -3,11 +3,14 @@ public with sharing class EstudoController {
     public String idProva                   {get; set;}
     public List<Pergunta__c> lstPergunta    {get; set;}
     public List<Opcoes__c> lstOpc           {get; set;}
- 
+    public List<Prova__c> lstProva          {get; set;}
 
     public EstudoController() {
         lstOpc          = new List<Opcoes__c>();
         lstPergunta     = new List<Pergunta__c>();
+        lstProva        = new List<Prova__c>();
+        lstProva = ProvaDAO.getProvas();
+        
     }
 
     // Pegar as Perguntas
@@ -16,44 +19,18 @@ public with sharing class EstudoController {
         List<String> lstPerguntaId = new List<String>();
 
         // Pega qual foi a prova escolhida
-        Prova__c prova = [SELECT Id, Name FROM Prova__c];
+         
+
         // faz a query 
-        lstPergunta = [SELECT   CreatedById,
-                                CreatedDate,
-                                Id,
-                                IsDeleted,
-                                LastModifiedById,
-                                LastModifiedDate,
-                                LastReferencedDate,
-                                LastViewedDate,
-                                Name,
-                                PerguntaEN__c,
-                                PerguntaPT__c,
-                                Prova__c,
-                                SystemModstamp 
-                            FROM Pergunta__c
-                            WHERE Prova__c =: prova.Id];    
+        lstPergunta = PerguntaDAO.getPerguntasPorProva(idProva);
         
         for(Pergunta__c itemPerg : lstPergunta){
             lstPerguntaId.add(itemPerg.Id);
         }
 
-        lstOpc = [SELECT    CreatedById,
-                            CreatedDate,
-                            DescricaoEN__c,
-                            DescricaoPT__c,
-                            Id,
-                            IsDeleted,
-                            LastModifiedById,
-                            LastModifiedDate,
-                            Name,
-                            Pergunta__c,
-                            RespostaCerta__c,
-                            SystemModstamp 
-                        FROM Opcoes__c
-                        WHERE Pergunta__c IN: lstPerguntaId]; 
+        lstOpc = OpcaoDAO.getOpcoesPorListaDePergunta(lstPerguntaId); 
+               
         // retorna
-
     }
 
     // public class pergunta{
