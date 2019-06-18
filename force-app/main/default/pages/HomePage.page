@@ -2,6 +2,13 @@
  
     MENU
 
+    <div class="slds-col">  
+        Estudo
+    </div>
+    <div class="slds-col">  
+        Prova 
+    </div>
+    
     ESCOLHAS
 
     FOOTER

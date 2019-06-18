@@ -1,21 +1,35 @@
 <apex:page controller="EstudoController">
 
     <apex:slds />
-    <apex:variable value="{!0}" var="num"/>
-
+    
     <apex:sectionHeader title="Aprenda Salesforce" /> 
     <apex:form>
-      <apex:pageBlock title="Provas Disponíveis">
-        <apex:pageBlockButtons> 
+        <!-- Escolha de Lingua -->
+        <apex:selectOptions>
+            <apex:selectOption> PT </apex:selectOption>
+            <apex:selectOption> EN </apex:selectOption>
+            <apex:selectOption> ES </apex:selectOption>
+        </apex:selectOptions>
+    
+        <!-- Escolha da Prova -->
+        <apex:repeat var="itemProva" value="{!lstProva}">
+              <div class="slds-col">  
+                  {!itemProva.Name} <br/><br/>
+              </div>
+        </apex:repeat>
+        
+
+        <!-- Perguntas da Prova -->
+        <apex:repeat var="prova" value="{!lstPerguntasW}">
+              <div class="slds-col">  
+                  {!prova.perguntaS.PerguntaPT__c} <br/><br/>
+              </div>
+              <apex:repeat var="opcoes2" value="{!prova.opcoes}">
+                {!opcoes2.DescricaoPT__c} <br/>
+              </apex:repeat>
+          </apex:repeat>
+
           <apex:commandButton action="{!step2}" value="Next"/>
-        </apex:pageBlockButtons>
-        <apex:pageBlockSection title="Selecione a Prova"> 
-            <apex:repeat var="prova" value="{!lstProva}">
-                <div class="slds-col"> 
-                    <!-- <span> {!lstProva[num]} </span> -->
-                </div>
-            </apex:repeat>
-        </apex:pageBlockSection>
-    </apex:pageBlock>
-  </apex:form>
+        
+      </apex:form>
 </apex:page>

@@ -1,0 +1,25 @@
+<apex:page renderAs="pdf" controller="ReportExam">
+
+    <!-- Cabeçalho -->
+        Logo Aprenda Salesforce 
+
+    <!-- Informações Pessoais -->
+
+        Nome
+        Email
+
+    <!-- Resultado da Prova -->
+
+        Perguntas Totais
+        Quantos Acertou 
+        Quantos Errou
+
+    <!-- Porcentagem de Acerto e Quais pontos mais acertou -->
+
+        Perguntas que acertou
+
+    <!-- Porcentagem de Erros e Quais pontos mais acertou -->
+
+        Perguntas que errou 
+
+</apex:page>
